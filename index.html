@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=1024" />
+   <meta name="apple-mobile-web-app-capable" content="yes" />
+   <title>Predicting airquality</title>
+   <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
+   <meta name="author" content="David Álvarez" />
+   <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+   <link href="libraries/frameworks/impressjs/css/impress-demo.css" rel="stylesheet" />
+   <link rel="shortcut icon" href="libraries/frameworks/impressjs/favicon.png" />
+   <link rel="apple-touch-icon" href="libraries/frameworks/impressjs/apple-touch-icon.png" />
+   <link href="libraries/highlighters/highlight.js/css/tomorrow.css" rel="stylesheet" />   <link rel="stylesheet" href = "libraries/widgets/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href = "assets/css/ribbons.css">
+
+</head>
+<body class="impress-not-supported">
+  <div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are   
+      presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> 
+      browser.</p>
+  </div>
+  <div id="impress">
+    
+    <div id="slide-1" class="step " 
+  data-x="" data-y=""  
+   
+    
+    
+   >
+ <h1>Predicting Airquality</h1>
+ <h3>Developing Data Products - Coursera</h3>
+
+<p>Author: <em>David Álvarez</em></p>
+
+</div>
+<div id="slide-2" class="step slide" 
+  data-x="1000" data-y="0"  
+   
+    
+    
+   >
+ <h1>Airquality Dataset</h1>
+ <p>Airquality data set is available in R using the following command:</p>
+
+<pre><code class="r">data(airquality)
+</code></pre>
+
+<p>Resulting in a dataset with the same name: </p>
+
+<pre><code class="r">head(airquality, 4)
+</code></pre>
+
+<pre><code>##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3
+## 4    18     313 11.5   62     5   4
+</code></pre>
+
+</div>
+<div id="slide-3" class="step slide" 
+  data-x="1000" data-y="2000"  
+   
+    
+    
+    data-scale="2">
+ <h1>Dataset description</h1>
+ <p>The air quality data contains the following columns: </p>
+
+<pre><code>- Ozone: Mean ozone in parts per billion.  
+- Solar.R: Solar radiation in Langleys.  
+- Wind: Average wind speed in mph.  
+- Temp: Maximum daily temperature in Fº.  
+- Month: Month of sample.
+- Day: Day of sample.
+</code></pre>
+
+<p>We want to <strong>predict Ozone levels</strong> in terms of other columns, that is: </p>
+
+<p>\[Ozone \sim Solar.R + Wind + Temp + Month + Day\]</p>
+
+</div>
+<div id="slide-4" class="step slide" 
+  data-x="6000" data-y="6000"  
+    data-rotate="45" 
+    
+    
+    data-scale="5">
+ <h1>Prediction model</h1>
+ <p>We have used the <code>caret</code> package to train the prediction model: </p>
+
+<pre><code class="r">library(caret)
+model &lt;- train(Ozone ~ ., 
+               data = airquality, 
+               method=&quot;lm&quot;);
+</code></pre>
+
+<p>But using R is too complicated for some users.</p>
+
+<p>We have created a Shiny Application to interact with the prediction model easily through a friendly user interface.</p>
+
+</div>
+<div id="slide-5" class="step slide" 
+  data-x="4000" data-y="1500"  
+    data-rotate="200" 
+    
+    
+    data-scale="1">
+ <h1>Shiny Application</h1>
+ <p>Visit: <a href="https://davizuku.shinyapps.io/project">https://davizuku.shinyapps.io/project</a></p>
+
+<p><img src="assets/img/snapshot_shiny.png" alt="Shiny application"></p>
+
+</div>
+ 
+    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
+    </div>
+
+  </div>
+
+  <div class="hint">
+    <p>Use a spacebar or arrow keys to navigate</p>
+  </div>
+  
+  <div style="position: fixed; bottom: 10px; left: 10px; pointer-events: auto;">
+      <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+  </div>
+  </body>
+ <script>
+  if ("ontouchstart" in document.documentElement) { 
+    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+  }
+ </script>
+ <script src="libraries/frameworks/impressjs/js/impress.js"></script>
+ <script>impress().init();</script>
+ <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+ <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+     tex2jax: {
+       inlineMath: [['$','$'], ['\\(','\\)']],
+       processEscapes: true
+     }
+   });
+ </script>
+ <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+ <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+ </script> -->
+ <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+ $(function (){ 
+   $("#example").popover(); 
+   $("[rel='tooltip']").tooltip(); 
+ });  
+ </script>  
+ <!-- LOAD HIGHLIGHTER JS FILES -->
+ <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+ <script>hljs.initHighlightingOnLoad();</script>
+ <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+  
+ </html>
